@@ -16,7 +16,7 @@ export default function Page() {
 </h1>
         </header>
 
-        <div className={styles.spacer} />
+
 
         <div className={styles.cards}>
           <Link href="/tcg" className={`${styles.card} ${styles.cardLarge}`}>

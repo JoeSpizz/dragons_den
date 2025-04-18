@@ -7,26 +7,31 @@
 .siteContainer {
   position: relative;
   min-height: 100vh;
-  background: url('/dragon_wide.png') center/cover no-repeat;
+  background: url('/drags.png') center/cover no-repeat;
 }
 
 /* Dark overlay for contrast */
 .overlay {
+    
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.2);
 }
 
-/* Flex layout container */
+/* Flex layout container (allow scroll) */
+/* Stacked flex layout, full-height with cards at bottom */
 .content {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 0 1rem;
-  color: #f0e5cb;
-}
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* push header up and cards down */
+    min-height: 100vh;               /* allow growth if needed */
+    padding: 1rem;                   /* uniform padding all around */
+    color: #f0e5cb;
+    overflow: hidden;                /* prevent inner scroll */
+  }
+  
 
 /* Header and title */
 .header {
@@ -53,18 +58,19 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Spacer to push cards down */
+/* Spacer pushes cards down */
 .spacer {
   flex: 1;
 }
 
-/* Cards grid default (2 columns) */
+/* Cards grid within flow */
 .cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
   max-width: 1200px;
   margin: 0 auto 1rem;
+  margin-bottom: 2rem; /* so they never butt right to the bottom edge */
 }
 
 /* First card spans both columns */
@@ -72,7 +78,7 @@
   grid-column: span 2;
 }
 
-/* Card common */
+/* Shared card styles */
 .card {
   display: flex;
   align-items: center;
@@ -88,29 +94,27 @@
   font-size: 1rem;
 }
 
-/* First card spans */
+/* Large card layout */
 .cardLarge {
   flex-direction: row;
   text-align: center;
   font-size: 1.25rem;
 }
 
-/* Small cards column layout */
+/* Small cards: icon above text */
 .cardSmall {
   flex-direction: column;
   text-align: center;
   font-size: 1rem;
 }
 
-/* Responsive larger screens */
+/* Responsive adjustments */
 @media (min-width: 640px) {
   .headerTitle {
     font-size: 3rem;
   }
   .cards {
-    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin-bottom: 2rem;
   }
   .card {
     gap: 1rem;
@@ -122,7 +126,6 @@
     font-size: 1.5rem;
   }
   .cardLarge {
-    grid-column: span 2;
     font-size: 2.5rem;
   }
 }
